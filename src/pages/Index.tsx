@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -12,6 +11,7 @@ import Navigation from '@/components/Navigation';
 import LoginForm from '@/components/LoginForm';
 import SignupForm from '@/components/SignupForm';
 import Footer from '@/components/Footer';
+import StatCard from '@/components/StatCard';
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState('home');
@@ -149,9 +149,9 @@ const HomePage = ({ setCurrentStep, user }) => {
   ];
 
   const stats = [
-    { label: "Accuracy Rate", value: "94.5%", icon: TrendingUp },
-    { label: "Patients Helped", value: "10,000+", icon: Users },
-    { label: "Success Stories", value: "500+", icon: Heart }
+    { label: "Accuracy Rate", value: "94.5%", numericValue: 94.5, icon: TrendingUp },
+    { label: "Patients Helped", value: "10,000+", numericValue: 10000, icon: Users },
+    { label: "Success Stories", value: "500+", numericValue: 500, icon: Heart }
   ];
 
   return (
@@ -187,14 +187,16 @@ const HomePage = ({ setCurrentStep, user }) => {
           </Button>
         </div>
 
-        {/* Stats Section */}
+        {/* Stats Section with animated counters */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <stat.icon className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-              <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
-              <div className="text-gray-600">{stat.label}</div>
-            </div>
+            <StatCard
+              key={index}
+              label={stat.label}
+              value={stat.value}
+              numericValue={stat.numericValue}
+              icon={stat.icon}
+            />
           ))}
         </div>
       </div>

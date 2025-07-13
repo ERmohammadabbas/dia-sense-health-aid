@@ -1,19 +1,52 @@
+
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Heart, Activity, FileText, Shield, Users, TrendingUp } from 'lucide-react';
+import { Heart, Activity, FileText, Shield, Users, TrendingUp, LogOut } from 'lucide-react';
 import PatientForm from '@/components/PatientForm';
 import MedicalTestForm from '@/components/MedicalTestForm';
 import PredictionResult from '@/components/PredictionResult';
 import HealthTips from '@/components/HealthTips';
 import Navigation from '@/components/Navigation';
+import LoginForm from '@/components/LoginForm';
+import SignupForm from '@/components/SignupForm';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState('home');
   const [patientData, setPatientData] = useState(null);
   const [testData, setTestData] = useState(null);
   const [predictionResult, setPredictionResult] = useState(null);
+  const [user, setUser] = useState(null); // null means not logged in
+  const [authMode, setAuthMode] = useState('login'); // 'login' or 'signup'
+
+  const handleLogin = (userData) => {
+    setUser(userData);
+    setCurrentStep('home');
+  };
+
+  const handleSignup = (userData) => {
+    setUser(userData);
+    setCurrentStep('home');
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    setCurrentStep('home');
+    setPatientData(null);
+    setTestData(null);
+    setPredictionResult(null);
+  };
+
+  // If user is not logged in, show auth forms
+  if (!user) {
+    if (authMode === 'login') {
+      return <LoginForm onLogin={handleLogin} onSwitchToSignup={() => setAuthMode('signup')} />;
+    } else {
+      return <SignupForm onSignup={handleSignup} onSwitchToLogin={() => setAuthMode('login')} />;
+    }
+  }
 
   const handlePatientSubmit = (data) => {
     setPatientData(data);
@@ -73,19 +106,25 @@ const Index = () => {
       case 'health-tips':
         return <HealthTips />;
       default:
-        return <HomePage setCurrentStep={setCurrentStep} />;
+        return <HomePage setCurrentStep={setCurrentStep} user={user} />;
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-      <Navigation currentStep={currentStep} setCurrentStep={setCurrentStep} />
+      <Navigation 
+        currentStep={currentStep} 
+        setCurrentStep={setCurrentStep}
+        user={user}
+        onLogout={handleLogout}
+      />
       {renderCurrentStep()}
+      <Footer setCurrentStep={setCurrentStep} />
     </div>
   );
 };
 
-const HomePage = ({ setCurrentStep }) => {
+const HomePage = ({ setCurrentStep, user }) => {
   const features = [
     {
       icon: Heart,
@@ -123,8 +162,7 @@ const HomePage = ({ setCurrentStep }) => {
           AI-Powered Health Assessment
         </Badge>
         <h1 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
-          Diabetes Prediction & 
-          <span className="text-blue-600"> Health Assessment</span>
+          Welcome back, <span className="text-blue-600">{user.name}!</span>
         </h1>
         <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
           Get accurate diabetes risk predictions using advanced machine learning. 

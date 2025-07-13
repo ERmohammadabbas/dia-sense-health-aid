@@ -1,8 +1,8 @@
 
 import { Button } from '@/components/ui/button';
-import { Heart, Home, User, TestTube, FileText, BookOpen } from 'lucide-react';
+import { Heart, Home, User, TestTube, FileText, BookOpen, LogOut } from 'lucide-react';
 
-const Navigation = ({ currentStep, setCurrentStep }) => {
+const Navigation = ({ currentStep, setCurrentStep, user, onLogout }) => {
   const navItems = [
     { key: 'home', label: 'Home', icon: Home },
     { key: 'patient-form', label: 'Patient Info', icon: User },
@@ -38,6 +38,21 @@ const Navigation = ({ currentStep, setCurrentStep }) => {
                 <span className="font-medium">{item.label}</span>
               </Button>
             ))}
+          </div>
+
+          {/* User Info & Logout */}
+          <div className="flex items-center space-x-4">
+            <span className="text-sm text-gray-600 hidden sm:inline">
+              Welcome, {user?.name}
+            </span>
+            <Button
+              variant="outline"
+              onClick={onLogout}
+              className="flex items-center space-x-2 text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200"
+            >
+              <LogOut className="w-4 h-4" />
+              <span className="font-medium">Logout</span>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -59,7 +58,18 @@ const Index = () => {
       case 'medical-test':
         return <MedicalTestForm onSubmit={handleTestSubmit} patientData={patientData} />;
       case 'result':
-        return <PredictionResult result={predictionResult} patientData={patientData} testData={testData} />;
+        // Only render PredictionResult when all required data is available
+        return predictionResult && patientData && testData ? (
+          <PredictionResult result={predictionResult} patientData={patientData} testData={testData} />
+        ) : (
+          <div className="container mx-auto px-4 py-8 max-w-4xl">
+            <Card className="shadow-lg border-0 bg-white">
+              <CardContent className="p-8 text-center">
+                <p className="text-gray-600">Generating prediction results...</p>
+              </CardContent>
+            </Card>
+          </div>
+        );
       case 'health-tips':
         return <HealthTips />;
       default:

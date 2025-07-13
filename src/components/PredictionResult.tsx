@@ -15,6 +15,19 @@ import {
 } from 'lucide-react';
 
 const PredictionResult = ({ result, patientData, testData }) => {
+  // Add null checks to prevent errors
+  if (!result || !patientData || !testData) {
+    return (
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <Card className="shadow-lg border-0 bg-white">
+          <CardContent className="p-8 text-center">
+            <p className="text-gray-600">Loading prediction results...</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   const isHighRisk = result.risk === 'HIGH';
   
   const generatePDFReport = () => {

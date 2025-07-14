@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { Heart, Home, User, TestTube, FileText, BookOpen, LogOut } from 'lucide-react';
+import { Heart, Home, User, TestTube, FileText, BookOpen, LogOut, Bot } from 'lucide-react';
 
 const Navigation = ({ currentStep, setCurrentStep, user, onLogout }) => {
   const navItems = [
@@ -8,7 +8,8 @@ const Navigation = ({ currentStep, setCurrentStep, user, onLogout }) => {
     { key: 'patient-form', label: 'Patient Info', icon: User },
     { key: 'medical-test', label: 'Medical Test', icon: TestTube },
     { key: 'result', label: 'Results', icon: FileText },
-    { key: 'health-tips', label: 'Health Tips', icon: BookOpen }
+    { key: 'health-tips', label: 'Health Tips', icon: BookOpen },
+    { key: 'chatbot', label: 'AI Assistant', icon: Bot, isExternal: true }
   ];
 
   return (
@@ -24,19 +25,31 @@ const Navigation = ({ currentStep, setCurrentStep, user, onLogout }) => {
           {/* Navigation Items */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <Button
-                key={item.key}
-                variant={currentStep === item.key ? "default" : "ghost"}
-                onClick={() => setCurrentStep(item.key)}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
-                  currentStep === item.key 
-                    ? 'bg-blue-600 text-white shadow-lg' 
-                    : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-                }`}
-              >
-                <item.icon className="w-4 h-4" />
-                <span className="font-medium">{item.label}</span>
-              </Button>
+              item.isExternal ? (
+                <Button
+                  key={item.key}
+                  variant="ghost"
+                  onClick={() => window.location.href = '/chatbot'}
+                  className="flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 text-gray-600 hover:text-blue-600 hover:bg-blue-50"
+                >
+                  <item.icon className="w-4 h-4" />
+                  <span className="font-medium">{item.label}</span>
+                </Button>
+              ) : (
+                <Button
+                  key={item.key}
+                  variant={currentStep === item.key ? "default" : "ghost"}
+                  onClick={() => setCurrentStep(item.key)}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-200 ${
+                    currentStep === item.key 
+                      ? 'bg-blue-600 text-white shadow-lg' 
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                  }`}
+                >
+                  <item.icon className="w-4 h-4" />
+                  <span className="font-medium">{item.label}</span>
+                </Button>
+              )
             ))}
           </div>
 

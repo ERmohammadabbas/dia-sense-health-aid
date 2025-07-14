@@ -53,9 +53,14 @@ const Index = () => {
     setCurrentStep('medical-test');
   };
 
-  const handleTestSubmit = (data) => {
+  const handleTestSubmit = async (data) => {
     setTestData(data);
-    // Simulate ML prediction (in real app, this would call backend API)
+    setCurrentStep('generating'); // Show generating state
+    
+    // Simulate ML prediction processing time
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    
+    // Advanced risk calculation (simulating ML model)
     const prediction = calculateDiabetesRisk(data);
     setPredictionResult(prediction);
     setCurrentStep('result');
@@ -88,6 +93,19 @@ const Index = () => {
     switch (currentStep) {
       case 'patient-form':
         return <PatientForm onSubmit={handlePatientSubmit} />;
+      case 'generating':
+        return (
+          <div className="container mx-auto px-4 py-16 max-w-4xl">
+            <div className="text-center space-y-6">
+              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary mx-auto"></div>
+              <h2 className="text-2xl font-bold text-gray-800">Generating Prediction Results</h2>
+              <p className="text-gray-600">Analyzing your medical data using advanced ML algorithms...</p>
+              <div className="text-sm text-gray-500">
+                Processing glucose levels, BMI, blood pressure, and other parameters
+              </div>
+            </div>
+          </div>
+        );
       case 'medical-test':
         return <MedicalTestForm onSubmit={handleTestSubmit} patientData={patientData} />;
       case 'result':

@@ -129,9 +129,34 @@ const MedicalChatbot = () => {
         '🔬 **Complications**: Heart disease, stroke, kidney damage, eye damage, nerve damage, foot problems if uncontrolled.'
       ],
       bloodpressure: [
-        'Normal blood pressure is 120/80 mmHg. Above 140/90 mmHg is considered hypertension.',
-        'High blood pressure causes: stress, obesity, smoking, alcohol, salt intake, and genetic factors.',
-        'To control blood pressure: reduce salt intake, regular exercise, maintain weight, and quit smoking.'
+        '🩺 **Normal BP**: 120/80 mmHg is ideal. 140/90 mmHg or higher is hypertension.',
+        '⚠️ **High BP Causes**: Stress, obesity, smoking, alcohol, excess salt, genetics, age.',
+        '💊 **Control Methods**: Reduce salt intake, regular exercise, maintain healthy weight, quit smoking, limit alcohol.',
+        '🔍 **Monitoring**: Check BP regularly, use home monitors, track readings over time.'
+      ],
+      pulse: [
+        '❤️ **Normal Pulse**: 60-100 beats per minute for adults at rest.',
+        '🏃 **Factors**: Exercise, stress, caffeine, medications, age can affect pulse rate.',
+        '⚠️ **Warning Signs**: Consistently above 100 (tachycardia) or below 60 (bradycardia) needs medical attention.',
+        '📊 **How to Check**: Feel wrist or neck pulse, count beats for 15 seconds, multiply by 4.'
+      ],
+      hiv: [
+        '🦠 **HIV/AIDS**: Human Immunodeficiency Virus attacks immune system. AIDS is advanced stage.',
+        '🛡️ **Prevention**: Safe sex, clean needles, PrEP for high-risk individuals, regular testing.',
+        '💊 **Treatment**: Antiretroviral therapy (ART) can make viral load undetectable.',
+        '🩺 **Symptoms**: Flu-like symptoms initially, then immune system weakening over time.'
+      ],
+      dengue: [
+        '🦟 **Dengue Fever**: Viral infection spread by Aedes mosquitos. 4 different strains exist.',
+        '⚠️ **Symptoms**: High fever, severe headache, eye pain, muscle/joint pain, rash.',
+        '🚨 **Warning Signs**: Severe abdominal pain, persistent vomiting, bleeding, difficulty breathing.',
+        '🛡️ **Prevention**: Remove stagnant water, use mosquito repellent, wear long sleeves.'
+      ],
+      typhoid: [
+        '🦠 **Typhoid**: Bacterial infection caused by Salmonella typhi. Spread through contaminated food/water.',
+        '⚠️ **Symptoms**: High fever, headache, weakness, stomach pain, rose-colored rash.',
+        '💊 **Treatment**: Antibiotics prescribed by doctor. Complete course essential.',
+        '🛡️ **Prevention**: Safe drinking water, proper sanitation, vaccination for travelers.'
       ],
       nutrition: [
         'Balanced diet should contain all nutrients: carbohydrates, proteins, fats, vitamins, and minerals.',
@@ -156,9 +181,34 @@ const MedicalChatbot = () => {
         '🔬 **Complications**: Heart disease, stroke, kidney damage, eye damage, nerve damage, foot problems अगर control न किया जाए।'
       ],
       bloodpressure: [
-        'Normal blood pressure 120/80 mmHg होता है। 140/90 mmHg से ऊपर को hypertension कहते हैं।',
-        'High blood pressure के कारण: stress, obesity, smoking, alcohol, salt intake, और genetic factors।',
-        'Blood pressure control करने के लिए: कम नमक खाएं, regular exercise करें, weight maintain करें।'
+        '🩺 **Normal BP**: 120/80 mmHg ideal होता है। 140/90 mmHg या ऊपर को hypertension कहते हैं।',
+        '⚠️ **High BP के कारण**: तनाव, मोटापा, धूम्रपान, शराब, अधिक नमक, आनुवंशिकता, उम्र।',
+        '💊 **Control करने के तरीके**: कम नमक खाएं, regular exercise करें, healthy weight maintain करें, धूम्रपान छोड़ें।',
+        '🔍 **Monitoring**: नियमित BP check करें, घर पर monitor use करें, readings का record रखें।'
+      ],
+      pulse: [
+        '❤️ **Normal Pulse**: आराम की स्थिति में adults के लिए 60-100 beats per minute।',
+        '🏃 **प्रभावित करने वाले कारक**: व्यायाम, तनाव, caffeine, दवाएं, उम्र pulse rate को प्रभावित करते हैं।',
+        '⚠️ **Warning Signs**: लगातार 100 से ऊपर (tachycardia) या 60 से नीचे (bradycardia) medical attention चाहिए।',
+        '📊 **कैसे Check करें**: कलाई या गर्दन पर pulse feel करें, 15 seconds के लिए count करें, 4 से multiply करें।'
+      ],
+      hiv: [
+        '🦠 **HIV/AIDS**: Human Immunodeficiency Virus immune system पर हमला करता है। AIDS advanced stage है।',
+        '🛡️ **बचाव**: Safe sex, clean needles, high-risk individuals के लिए PrEP, regular testing।',
+        '💊 **इलाज**: Antiretroviral therapy (ART) से viral load undetectable बन सकता है।',
+        '🩺 **लक्षण**: शुरू में flu-like symptoms, फिर समय के साथ immune system कमजोर होता है।'
+      ],
+      dengue: [
+        '🦟 **डेंगू बुखार**: Aedes mosquitos से फैलने वाला viral infection। 4 अलग strains होते हैं।',
+        '⚠️ **लक्षण**: तेज बुखार, सिरदर्द, आंखों में दर्द, muscle/joint pain, rash।',
+        '🚨 **Warning Signs**: पेट में तेज दर्द, लगातार उल्टी, bleeding, सांस लेने में तकलीफ।',
+        '🛡️ **बचाव**: रुका हुआ पानी हटाएं, mosquito repellent use करें, full sleeves पहनें।'
+      ],
+      typhoid: [
+        '🦠 **टाइफाइड**: Salmonella typhi bacteria से होने वाला infection। दूषित खाना/पानी से फैलता है।',
+        '⚠️ **लक्षण**: तेज बुखार, सिरदर्द, कमजोरी, पेट दर्द, गुलाबी रंग का rash।',
+        '💊 **इलाज**: Doctor द्वारा prescribed antibiotics। पूरा course जरूरी।',
+        '🛡️ **बचाव**: Safe drinking water, proper sanitation, travelers के लिए vaccination।'
       ],
       nutrition: [
         'Balanced diet में सभी nutrients होने चाहिए: carbohydrates, proteins, fats, vitamins, और minerals।',
@@ -182,6 +232,30 @@ const MedicalChatbot = () => {
         'La presión arterial normal es 120/80 mmHg. Por encima de 140/90 mmHg se considera hipertensión.',
         'Causas de presión alta: estrés, obesidad, fumar, alcohol, ingesta de sal y factores genéticos.',
         'Para controlar la presión: reducir sal, ejercicio regular, mantener peso y dejar de fumar.'
+      ],
+      pulse: [
+        '❤️ **Pulso Normal**: 60-100 latidos por minuto para adultos en reposo.',
+        '🏃 **Factores**: Ejercicio, estrés, cafeína, medicamentos, edad pueden afectar la frecuencia cardíaca.',
+        '⚠️ **Señales de Alerta**: Consistentemente arriba de 100 o debajo de 60 necesita atención médica.',
+        '📊 **Cómo Verificar**: Sentir pulso en muñeca o cuello, contar por 15 segundos, multiplicar por 4.'
+      ],
+      hiv: [
+        '🦠 **VIH/SIDA**: Virus de Inmunodeficiencia Humana ataca el sistema inmune. SIDA es la etapa avanzada.',
+        '🛡️ **Prevención**: Sexo seguro, agujas limpias, PrEP para individuos de alto riesgo, pruebas regulares.',
+        '💊 **Tratamiento**: Terapia antirretroviral (TAR) puede hacer la carga viral indetectable.',
+        '🩺 **Síntomas**: Síntomas similares a la gripe inicialmente, luego debilitamiento del sistema inmune.'
+      ],
+      dengue: [
+        '🦟 **Fiebre del Dengue**: Infección viral transmitida por mosquitos Aedes. Existen 4 cepas diferentes.',
+        '⚠️ **Síntomas**: Fiebre alta, dolor de cabeza severo, dolor ocular, dolor muscular/articular, erupción.',
+        '🚨 **Señales de Alerta**: Dolor abdominal severo, vómito persistente, sangrado, dificultad respiratoria.',
+        '🛡️ **Prevención**: Eliminar agua estancada, usar repelente, usar mangas largas.'
+      ],
+      typhoid: [
+        '🦠 **Tifoidea**: Infección bacteriana causada por Salmonella typhi. Se propaga por comida/agua contaminada.',
+        '⚠️ **Síntomas**: Fiebre alta, dolor de cabeza, debilidad, dolor estomacal, erupción rosa.',
+        '💊 **Tratamiento**: Antibióticos prescritos por doctor. Curso completo esencial.',
+        '🛡️ **Prevención**: Agua potable segura, saneamiento adecuado, vacunación para viajeros.'
       ],
       nutrition: [
         'Una dieta equilibrada debe contener todos los nutrientes: carbohidratos, proteínas, grasas, vitaminas y minerales.',
@@ -214,6 +288,22 @@ const MedicalChatbot = () => {
     if (lowerMessage.includes('blood pressure') || lowerMessage.includes('bp') || lowerMessage.includes('हाई ब्लड प्रेशर') || lowerMessage.includes('presión')) {
       return currentLangResponses.bloodpressure?.[Math.floor(Math.random() * (currentLangResponses.bloodpressure?.length || 1))] || 
              'I can provide information about blood pressure. Please specify your question.';
+    }
+    if (lowerMessage.includes('pulse') || lowerMessage.includes('heart rate') || lowerMessage.includes('नाड़ी') || lowerMessage.includes('हार्ट रेट')) {
+      return currentLangResponses.pulse?.[Math.floor(Math.random() * (currentLangResponses.pulse?.length || 1))] || 
+             'I can provide information about pulse and heart rate. Please specify your question.';
+    }
+    if (lowerMessage.includes('hiv') || lowerMessage.includes('aids') || lowerMessage.includes('एचआईवी') || lowerMessage.includes('एड्स')) {
+      return currentLangResponses.hiv?.[Math.floor(Math.random() * (currentLangResponses.hiv?.length || 1))] || 
+             'I can provide information about HIV/AIDS. Please specify your question.';
+    }
+    if (lowerMessage.includes('dengue') || lowerMessage.includes('डेंगू') || lowerMessage.includes('fever') || lowerMessage.includes('बुखार')) {
+      return currentLangResponses.dengue?.[Math.floor(Math.random() * (currentLangResponses.dengue?.length || 1))] || 
+             'I can provide information about dengue fever. Please specify your question.';
+    }
+    if (lowerMessage.includes('typhoid') || lowerMessage.includes('टाइफाइड') || lowerMessage.includes('tifide') || lowerMessage.includes('salmonella')) {
+      return currentLangResponses.typhoid?.[Math.floor(Math.random() * (currentLangResponses.typhoid?.length || 1))] || 
+             'I can provide information about typhoid. Please specify your question.';
     }
     if (lowerMessage.includes('diet') || lowerMessage.includes('food') || lowerMessage.includes('nutrition') || lowerMessage.includes('खाना') || lowerMessage.includes('dieta')) {
       return currentLangResponses.nutrition?.[Math.floor(Math.random() * (currentLangResponses.nutrition?.length || 1))] || 
@@ -291,23 +381,29 @@ const MedicalChatbot = () => {
     english: [
       'What are diabetes symptoms?',
       'How to control blood pressure?',
-      'Best diet for diabetics?',
-      'Show real-time diabetes stats',
-      'Exercise benefits for diabetes'
+      'Normal pulse rate for adults?',
+      'HIV prevention methods?',
+      'Dengue fever symptoms?',
+      'Typhoid treatment options?',
+      'Show real-time diabetes stats'
     ],
     hindi: [
       'डायबिटीज के लक्षण क्या हैं?',
       'Blood pressure कैसे control करें?',
-      'डायबिटीज के लिए कौन सा diet लें?',
-      'Real-time diabetes stats दिखाएं',
-      'Exercise के क्या फायदे हैं?'
+      'Adults के लिए normal pulse rate?',
+      'HIV से कैसे बचें?',
+      'डेंगू बुखार के लक्षण?',
+      'टाइफाइड का इलाज?',
+      'Real-time diabetes stats दिखाएं'
     ],
     spanish: [
       '¿Cuáles son los síntomas de diabetes?',
       '¿Cómo controlar la presión arterial?',
-      '¿Mejor dieta para diabéticos?',
-      'Mostrar estadísticas en tiempo real',
-      'Beneficios del ejercicio para diabetes'
+      '¿Frecuencia cardíaca normal?',
+      'Métodos de prevención del VIH',
+      'Síntomas de fiebre del dengue',
+      'Opciones de tratamiento del tifus',
+      'Mostrar estadísticas en tiempo real'
     ]
   };
 

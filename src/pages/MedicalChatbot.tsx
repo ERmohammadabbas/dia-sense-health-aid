@@ -119,10 +119,14 @@ const MedicalChatbot = () => {
   const medicalResponses = {
     english: {
       diabetes: [
-        'Diabetes is a chronic condition where blood sugar levels become elevated. There are Type 1 and Type 2 as main types.',
-        'Diabetes symptoms include: excessive thirst, frequent urination, fatigue, blurred vision, and slow healing wounds.',
-        'To control diabetes: maintain healthy diet, regular exercise, medication compliance, and regular monitoring are essential.',
-        `🌍 Real-time Global Stats: ${realTimeData?.globalDiabetesStats.totalCases.toLocaleString()} people worldwide have diabetes. ${realTimeData?.globalDiabetesStats.newCasesToday} new cases diagnosed today.`
+        '🩺 **Type 1 Diabetes**: Autoimmune condition where pancreas produces little/no insulin. Usually diagnosed in childhood/adolescence. Requires lifelong insulin therapy.',
+        '🩺 **Type 2 Diabetes**: Body becomes resistant to insulin or doesn\'t produce enough. Most common type (90-95%). Often linked to lifestyle factors.',
+        '🩺 **Gestational Diabetes**: Develops during pregnancy, usually disappears after birth but increases risk of Type 2 later.',
+        '🩺 **MODY (Monogenic)**: Rare genetic form affecting 1-2% of diabetics. Caused by single gene mutations.',
+        '⚠️ **Symptoms**: Excessive thirst, frequent urination, fatigue, blurred vision, slow healing wounds, unexpected weight loss.',
+        '💊 **Management**: Blood sugar monitoring, medication (insulin/oral drugs), healthy diet, regular exercise, stress management.',
+        `🌍 **Global Impact**: ${realTimeData?.globalDiabetesStats.totalCases.toLocaleString()} people worldwide have diabetes. ${realTimeData?.globalDiabetesStats.newCasesToday} new cases diagnosed today.`,
+        '🔬 **Complications**: Heart disease, stroke, kidney damage, eye damage, nerve damage, foot problems if uncontrolled.'
       ],
       bloodpressure: [
         'Normal blood pressure is 120/80 mmHg. Above 140/90 mmHg is considered hypertension.',
@@ -142,10 +146,14 @@ const MedicalChatbot = () => {
     },
     hindi: {
       diabetes: [
-        'डायबिटीज एक chronic condition है जिसमें blood sugar levels बढ़ जाते हैं। Type 1 और Type 2 दो मुख्य प्रकार हैं।',
-        'डायबिटीज के symptoms: अधिक प्यास, बार-बार urination, fatigue, blurred vision, और slow healing wounds।',
-        'डायबिटीज control करने के लिए: healthy diet, regular exercise, medication compliance, और regular monitoring जरूरी है।',
-        `🌍 Real-time Global Stats: दुनिया भर में ${realTimeData?.globalDiabetesStats.totalCases.toLocaleString()} लोगों को diabetes है। आज ${realTimeData?.globalDiabetesStats.newCasesToday} नए cases मिले हैं।`
+        '🩺 **Type 1 Diabetes**: यह autoimmune condition है जहाँ pancreas कम या बिल्कुल insulin नहीं बनाता। आमतौर पर बचपन/किशोरावस्था में होता है। जीवनभर insulin therapy चाहिए।',
+        '🩺 **Type 2 Diabetes**: शरीर insulin के प्रति resistant हो जाता है या पर्याप्त insulin नहीं बनाता। सबसे आम type (90-95%)। अक्सर lifestyle factors से जुड़ा होता है।',
+        '🩺 **Gestational Diabetes**: गर्भावस्था के दौरान होता है, delivery के बाद ठीक हो जाता है लेकिन बाद में Type 2 का खतरा बढ़ जाता है।',
+        '🩺 **MODY (Monogenic)**: दुर्लभ genetic form जो 1-2% diabetics को प्रभावित करता है। Single gene mutations के कारण होता है।',
+        '⚠️ **लक्षण**: अधिक प्यास, बार-बार urination, fatigue, blurred vision, slow healing wounds, अचानक weight loss।',
+        '💊 **प्रबंधन**: Blood sugar monitoring, दवाएं (insulin/oral drugs), healthy diet, regular exercise, stress management।',
+        `🌍 **Global Impact**: दुनिया भर में ${realTimeData?.globalDiabetesStats.totalCases.toLocaleString()} लोगों को diabetes है। आज ${realTimeData?.globalDiabetesStats.newCasesToday} नए cases मिले हैं।`,
+        '🔬 **Complications**: Heart disease, stroke, kidney damage, eye damage, nerve damage, foot problems अगर control न किया जाए।'
       ],
       bloodpressure: [
         'Normal blood pressure 120/80 mmHg होता है। 140/90 mmHg से ऊपर को hypertension कहते हैं।',
@@ -351,61 +359,58 @@ const MedicalChatbot = () => {
           </div>
         )}
 
-        <CardContent className="flex-1 flex flex-col p-0">
+        <CardContent className="flex-1 flex flex-col p-0 min-h-0">
           {/* Chat Messages */}
-          <ScrollArea className="flex-1 p-4" ref={scrollAreaRef}>
-            <div className="space-y-4">
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex gap-3 ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  {message.sender === 'bot' && (
-                    <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                      <Bot className="w-4 h-4 text-blue-600" />
-                    </div>
-                  )}
-                  
+          <div className="flex-1 min-h-0">
+            <ScrollArea className="h-full p-4">
+              <div className="space-y-4 pb-4">
+                {messages.map((message) => (
                   <div
-                    className={`max-w-[70%] p-3 rounded-lg ${
-                      message.sender === 'user'
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-100 text-gray-800'
-                    }`}
+                    key={message.id}
+                    className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    <p className="text-sm">{message.text}</p>
-                    <span className="text-xs opacity-70 mt-1 block">
-                      {message.timestamp.toLocaleTimeString('hi-IN', { 
-                        hour: '2-digit', 
-                        minute: '2-digit' 
-                      })}
-                    </span>
-                  </div>
-
-                  {message.sender === 'user' && (
-                    <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-                      <User className="w-4 h-4 text-green-600" />
-                    </div>
-                  )}
-                </div>
-              ))}
-
-              {isTyping && (
-                <div className="flex gap-3 justify-start">
-                  <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-blue-600" />
-                  </div>
-                  <div className="bg-gray-100 p-3 rounded-lg">
-                    <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                    <div
+                      className={`max-w-[75%] p-3 rounded-lg shadow-sm ${
+                        message.sender === 'user'
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted text-muted-foreground border'
+                      }`}
+                    >
+                      <div className="flex items-start gap-2">
+                        {message.sender === 'bot' && (
+                          <Bot className="w-4 h-4 mt-1 flex-shrink-0" />
+                        )}
+                        {message.sender === 'user' && (
+                          <User className="w-4 h-4 mt-1 flex-shrink-0" />
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm leading-relaxed break-words whitespace-pre-wrap">{message.text}</p>
+                          <span className="text-xs opacity-70 mt-1 block">
+                            {message.timestamp.toLocaleTimeString()}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
-          </ScrollArea>
+                ))}
+                
+                {isTyping && (
+                  <div className="flex justify-start">
+                    <div className="bg-muted text-muted-foreground p-3 rounded-lg max-w-[75%] border shadow-sm">
+                      <div className="flex items-center gap-2">
+                        <Bot className="w-4 h-4 flex-shrink-0" />
+                        <div className="flex space-x-1">
+                          <div className="w-2 h-2 bg-primary/60 rounded-full animate-bounce"></div>
+                          <div className="w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                          <div className="w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </ScrollArea>
+          </div>
 
           {/* Quick Questions */}
           <div className="p-4 border-t bg-gray-50">
